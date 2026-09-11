@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+import * as jwt from "jsonwebtoken";
+import type { SignOptions } from "jsonwebtoken";
 import { env } from "../config/env";
 import { prisma } from "../config/prisma";
 import { AppError } from "../utils/appError";

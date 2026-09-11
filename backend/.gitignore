@@ -4,3 +4,36 @@ node_modules
 
 /src/generated/prisma
 /prisma/seed.ts
+
+# --- Node ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Build output ---
+dist/
+build/
+out/
+.next/
+.turbo/
+
+# --- Env ---
+.env
+.env.local
+.env.*.local
+
+# --- Prisma generated ---
+backend/src/generated/
+src/generated/
+
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Logs ---
+*.log
+logs/

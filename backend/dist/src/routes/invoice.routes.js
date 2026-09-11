@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const invoice_controller_1 = require("../controllers/invoice.controller");
+const authenticate_1 = require("../middleware/authenticate");
+const validate_1 = require("../middleware/validate");
+const zodSchemas_1 = require("../utils/zodSchemas");
+const router = (0, express_1.Router)();
+router.use(authenticate_1.authenticate);
+router.get("/", (0, validate_1.validate)(zodSchemas_1.invoiceListQuerySchema), invoice_controller_1.InvoiceController.list);
+router.get("/export", invoice_controller_1.InvoiceController.exportCsv);
+router.get("/:id", invoice_controller_1.InvoiceController.getById);
+router.post("/", (0, validate_1.validate)(zodSchemas_1.invoiceCreateSchema), invoice_controller_1.InvoiceController.create);
+router.patch("/:id", (0, validate_1.validate)(zodSchemas_1.invoiceUpdateSchema), invoice_controller_1.InvoiceController.update);
+router.delete("/:id", invoice_controller_1.InvoiceController.delete);
+router.post("/bulk", (0, validate_1.validate)(zodSchemas_1.bulkSchema), invoice_controller_1.InvoiceController.bulk);
+exports.default = router;

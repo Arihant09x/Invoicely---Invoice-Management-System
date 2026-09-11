@@ -4,7 +4,7 @@ import { prisma } from "../config/prisma";
 function escapeCsv(v: unknown) {
   const s = String(v ?? "");
   if (s.includes(",") || s.includes('"') || s.includes("\n")) {
-    return `"${s.replaceAll('"', '""')}"`;
+    return `"${s.replace(/"/g, '""')}"`;
   }
   return s;
 }

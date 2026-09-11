@@ -1,7 +1,4 @@
-import dotenv from "dotenv";
-
-dotenv.config();
-
+import "dotenv/config";
 function mustGet(key: string): string {
   const v = process.env[key];
   if (!v) throw new Error(`Missing required env var: ${key}`);
