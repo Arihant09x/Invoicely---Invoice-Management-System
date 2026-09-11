@@ -59,32 +59,32 @@ Open the Vite URL printed in the second terminal (normally `http://localhost:517
 
 ### Backend
 
-| Technology | Purpose |
-| --- | --- |
-| Node.js + Express + TypeScript | Typed REST API and HTTP server |
-| Prisma ORM | Type-safe PostgreSQL data access and migrations |
-| JWT + bcryptjs | Stateless authentication and password hashing |
-| Zod | Request validation and schema enforcement |
+| Technology                               | Purpose                                                       |
+| ---------------------------------------- | ------------------------------------------------------------- |
+| Node.js + Express + TypeScript           | Typed REST API and HTTP server                                |
+| Prisma ORM                               | Type-safe PostgreSQL data access and migrations               |
+| JWT + bcryptjs                           | Stateless authentication and password hashing                 |
+| Zod                                      | Request validation and schema enforcement                     |
 | Helmet, CORS, express-rate-limit, Morgan | HTTP hardening, cross-origin control, throttling, and logging |
 
 ### Frontend
 
-| Technology | Purpose |
-| --- | --- |
-| React 18 + Vite + TypeScript | Fast, typed single-page application |
-| React Router v6 | Client-side routing and protected navigation |
-| TanStack Query | API caching, mutations, and asynchronous state |
-| Tailwind CSS + shadcn/ui | Consistent, accessible interface primitives |
-| React Hook Form + Zod | Performant, validated forms |
-| Axios | Configured HTTP client with JWT interceptor |
-| Lucide React | Lightweight, consistent iconography |
+| Technology                   | Purpose                                        |
+| ---------------------------- | ---------------------------------------------- |
+| React 18 + Vite + TypeScript | Fast, typed single-page application            |
+| React Router v6              | Client-side routing and protected navigation   |
+| TanStack Query               | API caching, mutations, and asynchronous state |
+| Tailwind CSS + shadcn/ui     | Consistent, accessible interface primitives    |
+| React Hook Form + Zod        | Performant, validated forms                    |
+| Axios                        | Configured HTTP client with JWT interceptor    |
+| Lucide React                 | Lightweight, consistent iconography            |
 
 ### Database
 
-| Technology | Purpose |
-| --- | --- |
+| Technology | Purpose                                                        |
+| ---------- | -------------------------------------------------------------- |
 | PostgreSQL | Relational storage for users, invoices, and invoice line items |
-| Neon | Managed serverless PostgreSQL deployment target |
+| Neon       | Managed serverless PostgreSQL deployment target                |
 
 ## Screenshots
 
@@ -227,17 +227,17 @@ Do not run `migrate dev` in production. Use `migrate deploy` as part of the rele
 
 ### Default Admin Account
 
-| Field | Value |
-| --- | --- |
-| Email | `[ADD_ADMIN_EMAIL_HERE]` |
-| Password | `[ADD_ADMIN_PASSWORD_HERE]` |
+| Field    | Value               |
+| -------- | ------------------- |
+| Email    | `test1@example.com` |
+| Password | `Test@12345`        |
 
 ### Default User Account
 
-| Field | Value |
-| --- | --- |
-| Email | `[ADD_USER_EMAIL_HERE]` |
-| Password | `[ADD_USER_PASSWORD_HERE]` |
+| Field    | Value               |
+| -------- | ------------------- |
+| Email    | `demo123@gmail.com` |
+| Password | `Demo@123`          |
 
 ## Running the Application
 
@@ -283,10 +283,10 @@ The API base URL is `/api`. All invoice and dashboard endpoints require `Authori
 
 ### Auth
 
-| Method | Endpoint | Description | Auth |
-| --- | --- | --- | --- |
-| `POST` | `/api/auth/register` | Register a user account | No |
-| `POST` | `/api/auth/login` | Authenticate and receive an access token | No |
+| Method | Endpoint             | Description                              | Auth |
+| ------ | -------------------- | ---------------------------------------- | ---- |
+| `POST` | `/api/auth/register` | Register a user account                  | No   |
+| `POST` | `/api/auth/login`    | Authenticate and receive an access token | No   |
 
 Example login request:
 
@@ -299,36 +299,36 @@ Example login request:
 
 ### Dashboard
 
-| Method | Endpoint | Description | Auth |
-| --- | --- | --- | --- |
-| `GET` | `/api/dashboard/stats` | Retrieve headline invoice metrics | Bearer token |
-| `GET` | `/api/dashboard/overview` | Retrieve dashboard overview data | Bearer token |
+| Method | Endpoint                  | Description                       | Auth         |
+| ------ | ------------------------- | --------------------------------- | ------------ |
+| `GET`  | `/api/dashboard/stats`    | Retrieve headline invoice metrics | Bearer token |
+| `GET`  | `/api/dashboard/overview` | Retrieve dashboard overview data  | Bearer token |
 
 ### Invoices
 
-| Method | Endpoint | Description | Auth |
-| --- | --- | --- | --- |
-| `GET` | `/api/invoices` | Paginated, sortable, filterable invoice list | Bearer token |
-| `GET` | `/api/invoices/export` | Download filtered invoices as CSV | Bearer token |
-| `GET` | `/api/invoices/:id` | Retrieve an invoice and its line items | Bearer token |
-| `POST` | `/api/invoices` | Create an invoice | Bearer token |
-| `PATCH` | `/api/invoices/:id` | Update an accessible invoice | Bearer token |
-| `DELETE` | `/api/invoices/:id` | Soft-delete an invoice; admin-only | Admin |
-| `DELETE` | `/api/invoices/:id?hard=true` | Permanently delete an invoice; admin-only | Admin |
-| `POST` | `/api/invoices/bulk` | Perform a bulk status or delete action | Bearer token |
+| Method   | Endpoint                      | Description                                  | Auth         |
+| -------- | ----------------------------- | -------------------------------------------- | ------------ |
+| `GET`    | `/api/invoices`               | Paginated, sortable, filterable invoice list | Bearer token |
+| `GET`    | `/api/invoices/export`        | Download filtered invoices as CSV            | Bearer token |
+| `GET`    | `/api/invoices/:id`           | Retrieve an invoice and its line items       | Bearer token |
+| `POST`   | `/api/invoices`               | Create an invoice                            | Bearer token |
+| `PATCH`  | `/api/invoices/:id`           | Update an accessible invoice                 | Bearer token |
+| `DELETE` | `/api/invoices/:id`           | Soft-delete an invoice; admin-only           | Admin        |
+| `DELETE` | `/api/invoices/:id?hard=true` | Permanently delete an invoice; admin-only    | Admin        |
+| `POST`   | `/api/invoices/bulk`          | Perform a bulk status or delete action       | Bearer token |
 
 Supported list parameters:
 
-| Parameter | Example | Description |
-| --- | --- | --- |
-| `page` | `1` | One-based page number |
-| `limit` | `10` | Results per page (maximum 100) |
-| `sortBy` | `createdAt` | Sort field |
-| `sortOrder` | `desc` | `asc` or `desc` |
-| `q` | `INV-2026` | Search term |
-| `status` | `PENDING` | Invoice status filter |
-| `dateFrom` | `2026-01-01` | Inclusive date-range start |
-| `dateTo` | `2026-12-31` | Inclusive date-range end |
+| Parameter   | Example      | Description                    |
+| ----------- | ------------ | ------------------------------ |
+| `page`      | `1`          | One-based page number          |
+| `limit`     | `10`         | Results per page (maximum 100) |
+| `sortBy`    | `createdAt`  | Sort field                     |
+| `sortOrder` | `desc`       | `asc` or `desc`                |
+| `q`         | `INV-2026`   | Search term                    |
+| `status`    | `PENDING`    | Invoice status filter          |
+| `dateFrom`  | `2026-01-01` | Inclusive date-range start     |
+| `dateTo`    | `2026-12-31` | Inclusive date-range end       |
 
 The unauthenticated health endpoint is available at `GET /health`.
 
@@ -376,23 +376,23 @@ Invoice Management System/
 
 ### Backend (`backend/.env`)
 
-| Variable | Required | Example | Description |
-| --- | --- | --- | --- |
-| `NODE_ENV` | No | `production` | Runtime environment; defaults to `development`. |
-| `PORT` | No | `3000` | Port used by the Express server; defaults to `3000`. |
-| `DATABASE_URL` | Yes | `postgresql://...` | Neon/PostgreSQL connection string used by Prisma. |
-| `JWT_ACCESS_SECRET` | Yes | `long-random-secret` | Secret used to sign and verify JWT access tokens. Use a long, unique production value. |
-| `JWT_ACCESS_EXPIRES_IN` | No | `1d` | JWT access-token lifetime; defaults to `1d`. |
-| `CORS_ORIGIN` | No | `https://app.example.com` | Allowed origin(s), comma-separated when multiple. Defaults to `*`. |
-| `ADMIN_SEED_EMAIL` | No | `[ADD_ADMIN_EMAIL_HERE]` | Admin email consumed by a project seed script, if configured. |
-| `ADMIN_SEED_PASSWORD` | No | `[ADD_ADMIN_PASSWORD_HERE]` | Admin password consumed by a project seed script, if configured. |
-| `USER_SEED_EMAIL` | No | `[ADD_USER_EMAIL_HERE]` | User email consumed by a project seed script, if configured. |
-| `USER_SEED_PASSWORD` | No | `[ADD_USER_PASSWORD_HERE]` | User password consumed by a project seed script, if configured. |
+| Variable                | Required | Example                     | Description                                                                            |
+| ----------------------- | -------- | --------------------------- | -------------------------------------------------------------------------------------- |
+| `NODE_ENV`              | No       | `production`                | Runtime environment; defaults to `development`.                                        |
+| `PORT`                  | No       | `3000`                      | Port used by the Express server; defaults to `3000`.                                   |
+| `DATABASE_URL`          | Yes      | `postgresql://...`          | Neon/PostgreSQL connection string used by Prisma.                                      |
+| `JWT_ACCESS_SECRET`     | Yes      | `long-random-secret`        | Secret used to sign and verify JWT access tokens. Use a long, unique production value. |
+| `JWT_ACCESS_EXPIRES_IN` | No       | `1d`                        | JWT access-token lifetime; defaults to `1d`.                                           |
+| `CORS_ORIGIN`           | No       | `https://app.example.com`   | Allowed origin(s), comma-separated when multiple. Defaults to `*`.                     |
+| `ADMIN_SEED_EMAIL`      | No       | `[ADD_ADMIN_EMAIL_HERE]`    | Admin email consumed by a project seed script, if configured.                          |
+| `ADMIN_SEED_PASSWORD`   | No       | `[ADD_ADMIN_PASSWORD_HERE]` | Admin password consumed by a project seed script, if configured.                       |
+| `USER_SEED_EMAIL`       | No       | `[ADD_USER_EMAIL_HERE]`     | User email consumed by a project seed script, if configured.                           |
+| `USER_SEED_PASSWORD`    | No       | `[ADD_USER_PASSWORD_HERE]`  | User password consumed by a project seed script, if configured.                        |
 
 ### Frontend (`frontend/.env`)
 
-| Variable | Required | Example | Description |
-| --- | --- | --- | --- |
+| Variable            | Required    | Example                     | Description                          |
+| ------------------- | ----------- | --------------------------- | ------------------------------------ |
 | `VITE_API_BASE_URL` | Recommended | `http://localhost:3000/api` | Full API base URL consumed by Axios. |
 
 The client also accepts `VITE_API_URL` as a compatibility fallback. Environment variables prefixed with `VITE_` are embedded into the browser bundle; never place server secrets in them.
